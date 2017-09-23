@@ -3,7 +3,7 @@ const express = require("express");
 const http = require("http").Server(app);
 const io = require("socket.io")(http);
 const _ = require("underscore")._;
-const test = require("./server-service/game-service.module.js");
+const gameService = require("./server-service/game-service.module.js");
 
 let users = [];
 let left = "";
@@ -17,30 +17,30 @@ io.on("connection", (socket) => {
     console.log("A user connected with id " + socket.id);
 
     if (0 === users.length) {
-        randomSign = test.assignSignToFirstUser().randomSign;
-        isTurn = test.assignSignToFirstUser().isTurn;
-        left = test.assignSignToFirstUser().left;
+        randomSign = gameService.assignSignToFirstUser().randomSign;
+        isTurn = gameService.assignSignToFirstUser().isTurn;
+        left = gameService.assignSignToFirstUser().left;
 
-        users.push(test.addNewUser(socket, randomSign));
+        users.push(gameService.addNewUser(socket, randomSign));
         socket.emit("turn", isTurn);
     } else if (1 === users.length) {
-        users.push(test.addNewUser(socket, left));
+        users.push(gameService.addNewUser(socket, left));
     } else {
-        users.push(test.addNewUser(socket, "watcher"));
+        users.push(gameService.addNewUser(socket, "watcher"));
     }
 
     socket.on("saveSelectedQuadrat", (data) => {
-        test.saveSelectedQuadratInBoard(data, io);
+        gameService.saveSelectedQuadratInBoard(data, io);
         io.emit("colorQuadrat", data);
     });
 
     socket.on("turn", (turn) => {
-        io.emit("turn", test.changeUserTurn(turn));
+        io.emit("turn", gameService.changeUserTurn(turn));
     });
 
     socket.on("disconnect", () => {
         console.log("A user disconnected with id " + socket.id);
-        test.deleteUser(socket, users);
+        gameService.deleteUser(socket, users);
     });
 });
 
