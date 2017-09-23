@@ -96,9 +96,9 @@ function checkIfCurrentUserWon(user, io) {
 }
 
 module.exports = {
-    assignSignToFirstUser: assignSignToFirstUser,
-    addNewUser: addNewUser,
-    saveSelectedQuadratInBoard: saveSelectedQuadratInBoard,
-    changeUserTurn: changeUserTurn,
-    deleteUser: deleteUser
+    assignSignToFirstUser,
+    addNewUser,
+    saveSelectedQuadratInBoard,
+    changeUserTurn,
+    deleteUser
 };

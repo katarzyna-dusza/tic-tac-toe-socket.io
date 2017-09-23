@@ -1,3 +1,7 @@
+body {
+    font-family: fantasy;
+}
+
 .quadrat {
     width: 150px;
     height: 150px;
@@ -15,8 +19,11 @@
 }
 
 .turn-header {
-    font-family: fantasy;
     color: cornflowerblue;
+}
+
+.my-sign {
+    color: dimgrey;
 }
 
 .marked-circle {

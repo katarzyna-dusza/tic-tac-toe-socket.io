@@ -32,13 +32,14 @@ function createNewUsers(socket) {
         return createPlayers(socket);
     }
 
-    return users.push(gameService.addNewUser(socket, "watcher"));
+    socket.disconnect();
 }
 
 io.on("connection", (socket) => {
     console.log("A user connected with id " + socket.id);
 
     createNewUsers(socket);
+    io.emit("allUsers", users);
 
     socket.on("saveSelectedQuadrat", (data) => {
         gameService.saveSelectedQuadratInBoard(data, io);

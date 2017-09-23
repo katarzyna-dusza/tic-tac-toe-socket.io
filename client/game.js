@@ -2,6 +2,7 @@ const socket = io();
 
 const quadrats = $('.quadrat');
 const turnInfo = $('.turn-header');
+const me = $('.my-sign');
 let isUserTurn = "";
 
 function colorQuadrat(number, sign) {
@@ -17,9 +18,17 @@ function mark(number) {
     socket.emit("saveSelectedQuadrat", {quadratNumber: number, user: isUserTurn});
 }
 
+socket.on("allUsers", (users) => {
+    users.forEach((user) => {
+       if (user.id === socket.id) {
+           return $(me).text("You are: " + user.sign);
+       }
+    });
+});
+
 socket.on("turn", (isTurn) => {
     isUserTurn = isTurn;
-    $(turnInfo).text("Now is a " + isTurn.toUpperCase() + " turn.");
+    $(turnInfo).text("Now it's a " + isTurn.toUpperCase() + " turn.");
 });
 
 socket.on("colorQuadrat", (data) => {
