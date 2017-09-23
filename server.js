@@ -13,21 +13,32 @@ let randomSign = "";
 app.use(express.static(__dirname + "/"));
 app.use('/js', express.static('./node_modules/snapsvg/dist'));
 
-io.on("connection", (socket) => {
-    console.log("A user connected with id " + socket.id);
 
+function createPlayers(socket) {
     if (0 === users.length) {
         randomSign = gameService.assignSignToFirstUser().randomSign;
         isTurn = gameService.assignSignToFirstUser().isTurn;
         left = gameService.assignSignToFirstUser().left;
 
         users.push(gameService.addNewUser(socket, randomSign));
-        socket.emit("turn", isTurn);
-    } else if (1 === users.length) {
-        users.push(gameService.addNewUser(socket, left));
-    } else {
-        users.push(gameService.addNewUser(socket, "watcher"));
+        return socket.emit("turn", isTurn);
     }
+
+    return users.push(gameService.addNewUser(socket, left));
+}
+
+function createNewUsers(socket) {
+    if (2 > users.length) {
+        return createPlayers(socket);
+    }
+
+    return users.push(gameService.addNewUser(socket, "watcher"));
+}
+
+io.on("connection", (socket) => {
+    console.log("A user connected with id " + socket.id);
+
+    createNewUsers(socket);
 
     socket.on("saveSelectedQuadrat", (data) => {
         gameService.saveSelectedQuadratInBoard(data, io);
