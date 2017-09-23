@@ -1,7 +1,7 @@
 {
   "name": "game-sockets",
   "version": "0.0.1",
-  "description": "circle-cross",
+  "description": "tic-tac-toe",
   "dependencies": {
     "express": "^4.14.0",
     "snapsvg": "^0.5.1",
