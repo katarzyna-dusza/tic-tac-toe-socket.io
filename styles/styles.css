@@ -1,0 +1,39 @@
+.quadrat {
+    width: 150px;
+    height: 150px;
+    border: 1px solid black;
+    float: left;
+}
+
+.quadrat:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: lightcyan;
+}
+
+.quadrat--clear {
+    clear: left;
+}
+
+.turn-header {
+    font-family: fantasy;
+    color: cornflowerblue;
+}
+
+.marked-circle {
+    background-image: url(../images/circle.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.marked-cross {
+    background-image: url(../images/cross.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.blocked-field {
+    pointer-events: none;
+    opacity: 0.7;
+}

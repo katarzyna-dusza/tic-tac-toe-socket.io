@@ -2,8 +2,6 @@ const socket = io();
 
 const quadrats = $('.quadrat');
 const turnInfo = $('.turn-header');
-
-let allUsers = [];
 let isUserTurn = "";
 
 function colorQuadrat(number, sign) {
@@ -19,11 +17,7 @@ function mark(number) {
     socket.emit("saveSelectedQuadrat", {quadratNumber: number, user: isUserTurn});
 }
 
-socket.on("allUsers", (users) => {
-    allUsers = users;
-});
-
-socket.on("turn", (isTurn) => { debugger;
+socket.on("turn", (isTurn) => {
     isUserTurn = isTurn;
     $(turnInfo).text("Now is a " + isTurn.toUpperCase() + " turn.");
 });
