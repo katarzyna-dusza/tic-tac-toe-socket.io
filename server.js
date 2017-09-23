@@ -9,15 +9,15 @@ let users = [];
 let left = "";
 let isTurn = "";
 let randomSign = "";
+let board = [];
 
 app.use(express.static(__dirname + "/"));
 app.use('/js', express.static('./node_modules/snapsvg/dist'));
 
-
 function createPlayers(socket) {
     if (0 === users.length) {
         randomSign = gameService.assignSignToFirstUser().randomSign;
-        isTurn = gameService.assignSignToFirstUser().isTurn;
+        isTurn = randomSign;
         left = gameService.assignSignToFirstUser().left;
 
         users.push(gameService.addNewUser(socket, randomSign));

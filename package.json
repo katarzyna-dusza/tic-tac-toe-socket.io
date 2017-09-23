@@ -4,7 +4,6 @@
   "description": "circle-cross",
   "dependencies": {
     "express": "^4.14.0",
-    "mathjs": "^3.16.3",
     "snapsvg": "^0.5.1",
     "socket.io": "^1.7.2",
     "underscore": "^1.8.3"

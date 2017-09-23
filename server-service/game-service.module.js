@@ -42,7 +42,6 @@ function assignSignToFirstUser() {
 
     return {
         randomSign: randomSign,
-        isTurn: randomSign,
         left: left
     };
 }
