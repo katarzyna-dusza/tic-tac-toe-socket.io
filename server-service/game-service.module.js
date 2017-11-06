@@ -1,13 +1,13 @@
-const _ = require("underscore")._;
+const _ = require('underscore')._;
 
-let signs = ["circle", "cross"];
+let signs = ['circle', 'cross'];
 let gameBoard = [
     [0, 1, 2],
     [3, 4, 5],
     [6, 7, 8]
 ];
-let randomSign = "";
-let left = "";
+let randomSign = '';
+let left = '';
 
 function winningOptions() {
     const FIRST_ROW = [gameBoard[0][0], gameBoard[0][1], gameBoard[0][2]];
@@ -77,7 +77,7 @@ function saveSelectedQuadratInBoard(data, io) {
                 gameBoard[row][column] = data.user;
                 checkIfCurrentUserWon(data.user, io);
 
-                io.emit("colorQuadrat", data);
+                io.emit('colorQuadrat', data);
             }
         }
     }
@@ -88,7 +88,7 @@ function checkIfCurrentUserWon(user, io) {
         if (winningOption.every(function (v, i, a) {
                 return v === a[0];
             })) {
-            io.emit("winner", user);
+            io.emit('winner', user);
         }
 
     });
