@@ -22,6 +22,6 @@ Communication between two clients is realised thanks to Websockets (Socket.io).
     node server.js
     ```
     
-1. Open two browsers (ideally, in Incognito mode)
+1. Open two browsers (ideally, in the Incognito mode)
 1. Have fun!
 
